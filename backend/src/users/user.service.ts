@@ -26,4 +26,9 @@ export class UserService {
   async findByUsername(username: string) {
     return this.userRepository.findOne({ where: { username } });
   }
+
+  async updateColor(userId: string, color: string) {
+    await this.userRepository.update({ id: userId }, { color });
+    return this.findById(userId); 
+  }
 }

@@ -45,6 +45,7 @@ interface Chat {
 interface User {
   id: string;
   username: string;
+  color: string;
 }
 
 export default function Inbox() {
@@ -57,6 +58,8 @@ export default function Inbox() {
   const [newChatParticipants, setNewChatParticipants] = useState("");
   const [open, setOpen] = useState(false);
   const socketRef = useRef<ReturnType<typeof io> | null>(null);
+  const sendSoundRef = useRef<HTMLAudioElement | null>(null);
+  const receiveSoundRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -107,7 +110,6 @@ export default function Inbox() {
 
     fetchMessages();
 
-    // Marquer comme lus tous les messages non lus
     const markAsRead = async () => {
       await fetch(`${API_URL}/messages/markAsRead/${selectedChat.id}`, {
         method: "PATCH",
@@ -134,6 +136,7 @@ export default function Inbox() {
 
     socket.on("newMessage", (message: any) => {
       if (message.sender.username === user.username) return;
+
       setMessages((prev) => [
         ...prev,
         {
@@ -145,7 +148,8 @@ export default function Inbox() {
         },
       ]);
 
-      // Marquer comme lu immédiatement
+      receiveSoundRef.current?.play();
+
       fetch(`${API_URL}/messages/markAsRead/${selectedChat.id}`, {
         method: "PATCH",
         credentials: "include",
@@ -179,15 +183,15 @@ export default function Inbox() {
         isRead: false,
       },
     ]);
+
+    sendSoundRef.current?.play();
     setNewMessage("");
   };
 
   const handleCreateChat = async () => {
     const res = await fetch(`${API_URL}/chats`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({
         name: newChatName,
@@ -209,6 +213,10 @@ export default function Inbox() {
 
   return (
     <div className="flex h-screen overflow-hidden">
+      {/* 🔊 Sons */}
+      <audio ref={sendSoundRef} src="/send.mp3" preload="auto" />
+      <audio ref={receiveSoundRef} src="/receive.mp3" preload="auto" />
+
       <div className="w-16 shrink-0">
         <AppSidebar />
       </div>
@@ -217,7 +225,37 @@ export default function Inbox() {
         <ResizablePanel defaultSize={30} minSize={20}>
           <div className="h-full border-r bg-gray-50 p-4 overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold">Conversations</h2>
+              <div>
+                <h2 className="text-lg font-semibold">Conversations de {user?.username}</h2>
+                {user && (
+                  <div className="mt-2">
+                    <label htmlFor="color" className="text-sm text-gray-600">
+                      Couleur de vos messages :
+                    </label>
+                    <input
+                      type="color"
+                      id="color"
+                      value={user.color}
+                      onChange={async (e) => {
+                        const newColor = e.target.value;
+                        const res = await fetch(`${API_URL}/users/me`, {
+                          method: "PATCH",
+                          headers: {
+                            "Content-Type": "application/json", 
+                          },
+                          credentials: "include",
+                          body: JSON.stringify({ color: newColor }),
+                        });
+                        if (res.ok) {
+                          const updatedUser = await res.json();
+                          setUser(updatedUser);
+                        }
+                      }}
+                      className="ml-2 h-6 w-10 p-0 border-0 bg-transparent"
+                    />
+                  </div>
+                )}
+              </div>
               <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger asChild>
                   <Button size="icon" variant="ghost">
@@ -285,9 +323,7 @@ export default function Inbox() {
                     <h2 className="text-lg font-semibold">{selectedChat.name}</h2>
                     <p className="text-sm text-gray-500">
                       Avec :{" "}
-                      {selectedChat.participants
-                        .map((p) => p.username)
-                        .join(", ")}
+                      {selectedChat.participants.map((p) => p.username).join(", ")}
                     </p>
                   </div>
                 </div>
@@ -299,8 +335,9 @@ export default function Inbox() {
                       <div
                         key={msg.id}
                         className={`max-w-xs p-3 rounded-md text-sm ${
-                          isMe ? "self-end bg-blue-200 text-right" : "self-start bg-gray-100"
+                          isMe ? "self-end text-right" : "self-start bg-gray-100"
                         }`}
+                        style={isMe ? { backgroundColor: user?.color || "#000000" } : {}}
                       >
                         {!isMe && (
                           <div className="text-xs text-gray-500 mb-1">
@@ -309,9 +346,14 @@ export default function Inbox() {
                         )}
                         <div>{msg.text}</div>
                         <div className="text-xs text-gray-500 mt-1">
-                          {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}{" "}
+                          {new Date(msg.timestamp).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}{" "}
                           {isMe && (
-                            <span className="ml-2">{msg.isRead ? "✓✓" : "✓"}</span>
+                            <span className="ml-2">
+                              {msg.isRead ? "Lu" : "Distribué"}
+                            </span>
                           )}
                         </div>
                       </div>

@@ -6,9 +6,11 @@ import {
   Param,
   UseGuards,
   Request,
+  Patch,
 } from '@nestjs/common';
 import { MessageService } from './message.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { User } from 'src/users/user.entity';
 
 @Controller('messages')
 export class MessageController {
@@ -45,5 +47,28 @@ export class MessageController {
   ) {
     const userId = req.user.userId;
     return this.messageService.findMessagesByChat(chatId, userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('markAsRead/:chatId')
+  async markMessagesAsRead(
+    @Param('chatId') chatId: string,
+    @Request() req: any,
+  ) {
+    console.log('req.user:', req.user);
+
+    const user = req.user as User;
+
+    
+    console.log('PATCH /messages/markAsRead/:chatId');
+    console.log('chatId:', chatId);
+    console.log('userId:', user.id);
+
+    const result = await this.messageService.markMessagesAsRead(chatId, req.user.userId);
+
+    
+    console.log('Nombre de messages mis à jour:', result.updated);
+
+    return result;
   }
 }

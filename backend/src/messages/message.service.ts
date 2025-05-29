@@ -81,4 +81,20 @@ export class MessageService {
       order: { timestamp: 'ASC' },
     });
   }
+
+  async markMessagesAsRead(chatId: string, userId: string) {
+    const result = await this.messageRepository
+      .createQueryBuilder()
+      .update()
+      .set({ isRead: true })
+      .where('chatId = :chatId', { chatId })
+      .andWhere('senderId != :userId', { userId })
+      .andWhere('isRead = :isRead', { isRead: false })
+      .execute();
+
+    return { updated: result.affected };
+  }
+
+  
+  
 }
