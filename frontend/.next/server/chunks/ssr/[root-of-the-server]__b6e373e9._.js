@@ -334,7 +334,7 @@ function Register() {
                 form.reset();
             } else {
                 const data = await res.json();
-                setErrorMessage(data.message || "Une erreur est survenue.");
+                setErrorMessage("Pseudo pas disponible, veuillez choisir un autre.");
             }
         } catch  {
             setErrorMessage("Impossible de contacter le serveur.");

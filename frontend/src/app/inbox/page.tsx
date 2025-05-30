@@ -690,7 +690,7 @@ export default function Inbox() {
                           </time>
                           {isMe && (
                             <span className="ml-2 italic text-xs">
-                              {msg.isRead ? "✓✓" : "✓"}
+                              {msg.isRead ? "Lu" : "Distribué"}
                             </span>
                           )}
                         </div>
