@@ -1874,7 +1874,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$sidebar
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/resizable.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.js [app-client] (ecmascript) <export default as Search>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/palette.js [app-client] (ecmascript) <export default as Palette>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/dialog.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/input.tsx [app-client] (ecmascript)");
@@ -2468,18 +2467,8 @@ function Inbox() {
                                                                                 participantTags.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
                                                                                         variant: "secondary",
                                                                                         className: "flex items-center gap-1",
-                                                                                        children: [
-                                                                                            tag,
-                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                                                                                className: "w-3 h-3 cursor-pointer hover:text-red-500",
-                                                                                                onClick: ()=>removeParticipantTag(tag)
-                                                                                            }, void 0, false, {
-                                                                                                fileName: "[project]/src/app/inbox/page.tsx",
-                                                                                                lineNumber: 515,
-                                                                                                columnNumber: 29
-                                                                                            }, this)
-                                                                                        ]
-                                                                                    }, tag, true, {
+                                                                                        children: tag
+                                                                                    }, tag, false, {
                                                                                         fileName: "[project]/src/app/inbox/page.tsx",
                                                                                         lineNumber: 513,
                                                                                         columnNumber: 27
@@ -2498,7 +2487,7 @@ function Inbox() {
                                                                                     className: "border-0 shadow-none p-0 h-auto focus-visible:ring-0 flex-1 min-w-[120px]"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                                    lineNumber: 521,
+                                                                                    lineNumber: 517,
                                                                                     columnNumber: 25
                                                                                 }, this)
                                                                             ]
@@ -2512,7 +2501,7 @@ function Inbox() {
                                                                             children: "Appuyez sur Entrée ou virgule pour ajouter un participant"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 535,
+                                                                            lineNumber: 531,
                                                                             columnNumber: 23
                                                                         }, this),
                                                                         participantError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2520,7 +2509,7 @@ function Inbox() {
                                                                             children: participantError
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 539,
+                                                                            lineNumber: 535,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
@@ -2542,12 +2531,12 @@ function Inbox() {
                                                                 children: "Créer"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                                lineNumber: 544,
+                                                                lineNumber: 540,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 543,
+                                                            lineNumber: 539,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
@@ -2580,7 +2569,7 @@ function Inbox() {
                                             "aria-label": "Recherche de conversations"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 553,
+                                            lineNumber: 549,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
@@ -2588,13 +2577,13 @@ function Inbox() {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 561,
+                                            lineNumber: 557,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 552,
+                                    lineNumber: 548,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -2605,7 +2594,7 @@ function Inbox() {
                                             children: "Aucune conversation trouvée"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 566,
+                                            lineNumber: 562,
                                             columnNumber: 17
                                         }, this),
                                         filteredChats.map((chat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
@@ -2627,18 +2616,10 @@ function Inbox() {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     className: "text-indigo-700 font-medium truncate",
-                                                                    children: getOtherParticipants(chat).map((p)=>p.username).join(", ") || chat.name
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 588,
-                                                                    columnNumber: 23
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "text-sm text-gray-500 truncate mt-0.5",
                                                                     children: chat.name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 591,
+                                                                    lineNumber: 584,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 chat.lastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2652,7 +2633,7 @@ function Inbox() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 594,
+                                                                            lineNumber: 589,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         " ",
@@ -2660,13 +2641,13 @@ function Inbox() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 593,
+                                                                    lineNumber: 588,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 587,
+                                                            lineNumber: 583,
                                                             columnNumber: 21
                                                         }, this),
                                                         chat.lastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2674,24 +2655,24 @@ function Inbox() {
                                                             children: formatTime(chat.lastMessage.timestamp)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 602,
+                                                            lineNumber: 597,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 586,
+                                                    lineNumber: 582,
                                                     columnNumber: 19
                                                 }, this)
                                             }, chat.id, false, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 569,
+                                                lineNumber: 565,
                                                 columnNumber: 17
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 564,
+                                    lineNumber: 560,
                                     columnNumber: 13
                                 }, this),
                                 user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2703,7 +2684,7 @@ function Inbox() {
                                                 className: "w-4 h-4 text-gray-600"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 614,
+                                                lineNumber: 609,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
@@ -2712,7 +2693,7 @@ function Inbox() {
                                                 children: "Ma couleur :"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 615,
+                                                lineNumber: 610,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2727,7 +2708,7 @@ function Inbox() {
                                                         "aria-label": "Choisir la couleur des messages"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/inbox/page.tsx",
-                                                        lineNumber: 617,
+                                                        lineNumber: 612,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2739,24 +2720,24 @@ function Inbox() {
                                                         children: "Aperçu"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/inbox/page.tsx",
-                                                        lineNumber: 625,
+                                                        lineNumber: 620,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 616,
+                                                lineNumber: 611,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/inbox/page.tsx",
-                                        lineNumber: 613,
+                                        lineNumber: 608,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 612,
+                                    lineNumber: 607,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -2774,7 +2755,7 @@ function Inbox() {
                         className: "bg-gray-200 hover:bg-indigo-300 cursor-col-resize"
                     }, void 0, false, {
                         fileName: "[project]/src/app/inbox/page.tsx",
-                        lineNumber: 641,
+                        lineNumber: 636,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResizablePanel"], {
@@ -2786,36 +2767,25 @@ function Inbox() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
                                     className: "border-b p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                className: "text-2xl font-bold",
-                                                children: selectedChat.name
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 648,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-sm text-gray-500",
-                                                children: [
-                                                    "Avec :",
-                                                    " ",
-                                                    selectedChat.participants.filter((p)=>p.username !== user?.username).map((p)=>p.username).join(", ")
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 649,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                            className: "text-2xl font-bold",
+                                            children: [
+                                                "Bienvenue sur : ",
+                                                selectedChat.name
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 643,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
                                         fileName: "[project]/src/app/inbox/page.tsx",
-                                        lineNumber: 647,
+                                        lineNumber: 642,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 646,
+                                    lineNumber: 641,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -2830,7 +2800,7 @@ function Inbox() {
                                                     className: "animate-spin rounded-full h-6 w-6 border-b-2 border-indigo-600"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 666,
+                                                    lineNumber: 654,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2838,13 +2808,13 @@ function Inbox() {
                                                     children: "Chargement des messages..."
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 667,
+                                                    lineNumber: 655,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 665,
+                                            lineNumber: 653,
                                             columnNumber: 19
                                         }, this),
                                         messages.map((msg)=>{
@@ -2870,7 +2840,7 @@ function Inbox() {
                                                             children: msg.sender
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 691,
+                                                            lineNumber: 679,
                                                             columnNumber: 27
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2878,7 +2848,7 @@ function Inbox() {
                                                             children: msg.text
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 695,
+                                                            lineNumber: 683,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2892,7 +2862,7 @@ function Inbox() {
                                                                     })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 697,
+                                                                    lineNumber: 685,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2900,24 +2870,24 @@ function Inbox() {
                                                                     children: msg.isRead ? "✓✓" : "✓"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 704,
+                                                                    lineNumber: 692,
                                                                     columnNumber: 29
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 696,
+                                                            lineNumber: 684,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 681,
+                                                    lineNumber: 669,
                                                     columnNumber: 23
                                                 }, this)
                                             }, msg.id, false, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 677,
+                                                lineNumber: 665,
                                                 columnNumber: 21
                                             }, this);
                                         }),
@@ -2925,13 +2895,13 @@ function Inbox() {
                                             ref: messagesEndRef
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 713,
+                                            lineNumber: 701,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 659,
+                                    lineNumber: 647,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
@@ -2952,7 +2922,7 @@ function Inbox() {
                                             "aria-label": "Écrire un message"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 717,
+                                            lineNumber: 705,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2961,13 +2931,13 @@ function Inbox() {
                                             children: "Envoyer"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 731,
+                                            lineNumber: 719,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 716,
+                                    lineNumber: 704,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -2976,12 +2946,12 @@ function Inbox() {
                             children: "Sélectionnez une conversation pour discuter"
                         }, void 0, false, {
                             fileName: "[project]/src/app/inbox/page.tsx",
-                            lineNumber: 737,
+                            lineNumber: 725,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/inbox/page.tsx",
-                        lineNumber: 643,
+                        lineNumber: 638,
                         columnNumber: 9
                     }, this)
                 ]

@@ -512,10 +512,6 @@ export default function Inbox() {
                         {participantTags.map((tag) => (
                           <Badge key={tag} variant="secondary" className="flex items-center gap-1">
                             {tag}
-                            <X 
-                              className="w-3 h-3 cursor-pointer hover:text-red-500" 
-                              onClick={() => removeParticipantTag(tag)}
-                            />
                           </Badge>
                         ))}
                         <Input
@@ -586,9 +582,8 @@ export default function Inbox() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="text-indigo-700 font-medium truncate">
-                        {getOtherParticipants(chat).map((p) => p.username).join(", ") || chat.name}
+                      {chat.name}
                       </div>
-                      <div className="text-sm text-gray-500 truncate mt-0.5">{chat.name}</div>
                       {chat.lastMessage && (
                         <div className="text-xs text-gray-400 truncate mt-1">
                           <span className="font-medium">
@@ -645,14 +640,7 @@ export default function Inbox() {
             <>
               <header className="border-b p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                 <div>
-                  <h2 className="text-2xl font-bold">{selectedChat.name}</h2>
-                  <p className="text-sm text-gray-500">
-                    Avec :{" "}
-                    {selectedChat.participants
-                      .filter((p) => p.username !== user?.username)
-                      .map((p) => p.username)
-                      .join(", ")}
-                  </p>
+                  <h2 className="text-2xl font-bold">Bienvenue sur : {selectedChat.name}</h2>
                 </div>
               </header>
 
