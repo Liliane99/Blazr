@@ -1818,7 +1818,6 @@ function Inbox() {
     const sendSoundRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const receiveSoundRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const messagesEndRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Fonction pour récupérer les messages d'un chat
     const fetchMessages = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (chatId)=>{
         setIsLoadingMessages(true);
         try {
@@ -1843,7 +1842,6 @@ function Inbox() {
             setIsLoadingMessages(false);
         }
     }, []);
-    // Fonction pour marquer les messages comme lus
     const markMessagesAsRead = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (chatId)=>{
         try {
             await fetch(`${API_URL}/messages/markAsRead/${chatId}`, {
@@ -1895,7 +1893,6 @@ function Inbox() {
     }, [
         user
     ]);
-    // Charger les messages quand un chat est sélectionné
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (!selectedChat) return;
         fetchMessages(selectedChat.id);
@@ -1914,18 +1911,15 @@ function Inbox() {
             ]
         });
         const socket = socketRef.current;
-        // Rejoindre la room globale de l'utilisateur pour recevoir tous les événements
         socket.emit("joinUser", {
             userId: user.id
         });
-        // Rejoindre le chat sélectionné si il y en a un
         if (selectedChat) {
             socket.emit("joinChat", {
                 chatId: selectedChat.id,
                 userId: user.id
             });
         }
-        // Nouveau message reçu
         socket.on("newMessage", (message)=>{
             if (message.sender.username === user.username) return;
             const newMsg = {
@@ -1936,14 +1930,12 @@ function Inbox() {
                 isRead: message.isRead,
                 color: message.sender.color
             };
-            // Ajouter le message seulement si c'est dans le chat actuel
             if (selectedChat && message.chatId === selectedChat.id) {
                 setMessages((prev)=>[
                         ...prev,
                         newMsg
                     ]);
             }
-            // Mettre à jour la liste des chats
             setChats((prevChats)=>{
                 const updatedChats = prevChats.map((chat)=>{
                     if (chat.id === message.chatId) {
@@ -1965,12 +1957,10 @@ function Inbox() {
                 });
             });
             receiveSoundRef.current?.play();
-            // Marquer comme lu automatiquement si c'est le chat actuel
             if (selectedChat && message.chatId === selectedChat.id) {
                 markMessagesAsRead(selectedChat.id);
             }
         });
-        // Messages marqués comme lus
         socket.on("messagesRead", (data)=>{
             if (selectedChat && data.chatId === selectedChat.id) {
                 setMessages((prev)=>prev.map((msg)=>msg.sender === user.username ? {
@@ -1979,7 +1969,6 @@ function Inbox() {
                         } : msg));
             }
         });
-        // Changement de couleur d'un utilisateur
         socket.on("userColorChanged", (data)=>{
             if (data.username === user.username) {
                 setUser((prev)=>prev ? {
@@ -1987,7 +1976,6 @@ function Inbox() {
                         color: data.newColor
                     } : null);
             }
-            // Mettre à jour les messages existants avec la nouvelle couleur
             setMessages((prev)=>prev.map((msg)=>msg.sender === data.username ? {
                         ...msg,
                         color: data.newColor
@@ -2125,7 +2113,6 @@ function Inbox() {
             if (res.ok) {
                 const updatedUser = await res.json();
                 setUser(updatedUser);
-                // Émettre le changement de couleur via socket
                 if (socketRef.current) {
                     socketRef.current.emit("userColorChanged", {
                         userId: user.id,
@@ -2164,21 +2151,17 @@ function Inbox() {
     const truncateMessage = (message, maxLength = 50)=>{
         return message.length > maxLength ? message.substring(0, maxLength) + '...' : message;
     };
-    // Fonction pour déterminer si le texte doit être blanc ou noir selon la couleur de fond
     const getContrastColor = (bgColor)=>{
-        // Convertir la couleur hex en RGB
         const hex = bgColor.replace('#', '');
         const r = parseInt(hex.substring(0, 2), 16);
         const g = parseInt(hex.substring(2, 4), 16);
         const b = parseInt(hex.substring(4, 6), 16);
-        // Calculer la luminance
         const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-        // Retourner blanc pour les couleurs sombres, noir pour les couleurs claires
         return luminance > 0.5 ? '#000000' : '#ffffff';
     };
     const handleChatSelect = (chat)=>{
         setSelectedChat(chat);
-        setMessages([]); // Vider les messages temporairement pour éviter la confusion
+        setMessages([]);
     };
     if (loading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {

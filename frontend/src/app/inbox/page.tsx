@@ -79,7 +79,7 @@ export default function Inbox() {
   const receiveSoundRef = useRef<HTMLAudioElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Fonction pour récupérer les messages d'un chat
+  
   const fetchMessages = useCallback(async (chatId: string) => {
     setIsLoadingMessages(true);
     try {
@@ -105,7 +105,7 @@ export default function Inbox() {
     }
   }, []);
 
-  // Fonction pour marquer les messages comme lus
+  
   const markMessagesAsRead = useCallback(async (chatId: string) => {
     try {
       await fetch(`${API_URL}/messages/markAsRead/${chatId}`, {
@@ -156,7 +156,7 @@ export default function Inbox() {
     fetchChats();
   }, [user]);
 
-  // Charger les messages quand un chat est sélectionné
+  
   useEffect(() => {
     if (!selectedChat) return;
 
@@ -173,10 +173,10 @@ export default function Inbox() {
 
     const socket = socketRef.current;
 
-    // Rejoindre la room globale de l'utilisateur pour recevoir tous les événements
+    
     socket.emit("joinUser", { userId: user.id });
 
-    // Rejoindre le chat sélectionné si il y en a un
+    
     if (selectedChat) {
       socket.emit("joinChat", {
         chatId: selectedChat.id,
@@ -184,7 +184,7 @@ export default function Inbox() {
       });
     }
 
-    // Nouveau message reçu
+    
     socket.on("newMessage", (message: any) => {
       if (message.sender.username === user.username) return;
 
@@ -197,12 +197,12 @@ export default function Inbox() {
         color: message.sender.color,
       };
 
-      // Ajouter le message seulement si c'est dans le chat actuel
+      
       if (selectedChat && message.chatId === selectedChat.id) {
         setMessages((prev) => [...prev, newMsg]);
       }
 
-      // Mettre à jour la liste des chats
+      
       setChats((prevChats) => {
         const updatedChats = prevChats.map((chat) => {
           if (chat.id === message.chatId) {
@@ -227,13 +227,13 @@ export default function Inbox() {
 
       receiveSoundRef.current?.play();
 
-      // Marquer comme lu automatiquement si c'est le chat actuel
+      
       if (selectedChat && message.chatId === selectedChat.id) {
         markMessagesAsRead(selectedChat.id);
       }
     });
 
-    // Messages marqués comme lus
+    
     socket.on("messagesRead", (data: { chatId: string; readBy: string }) => {
       if (selectedChat && data.chatId === selectedChat.id) {
         setMessages((prev) => 
@@ -246,13 +246,13 @@ export default function Inbox() {
       }
     });
 
-    // Changement de couleur d'un utilisateur
+    
     socket.on("userColorChanged", (data: { userId: string; newColor: string; username: string }) => {
       if (data.username === user.username) {
         setUser(prev => prev ? { ...prev, color: data.newColor } : null);
       }
       
-      // Mettre à jour les messages existants avec la nouvelle couleur
+      
       setMessages((prev) => 
         prev.map(msg => 
           msg.sender === data.username 
@@ -394,7 +394,7 @@ export default function Inbox() {
         const updatedUser = await res.json();
         setUser(updatedUser);
         
-        // Émettre le changement de couleur via socket
+        
         if (socketRef.current) {
           socketRef.current.emit("userColorChanged", {
             userId: user.id,
@@ -439,24 +439,24 @@ export default function Inbox() {
     return message.length > maxLength ? message.substring(0, maxLength) + '...' : message;
   };
 
-  // Fonction pour déterminer si le texte doit être blanc ou noir selon la couleur de fond
+ 
   const getContrastColor = (bgColor: string) => {
-    // Convertir la couleur hex en RGB
+    
     const hex = bgColor.replace('#', '');
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
     
-    // Calculer la luminance
+    
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
     
-    // Retourner blanc pour les couleurs sombres, noir pour les couleurs claires
+    
     return luminance > 0.5 ? '#000000' : '#ffffff';
   };
 
   const handleChatSelect = (chat: Chat) => {
     setSelectedChat(chat);
-    setMessages([]); // Vider les messages temporairement pour éviter la confusion
+    setMessages([]); 
   };
 
   if (loading) {
