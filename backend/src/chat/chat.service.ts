@@ -43,14 +43,13 @@ export class ChatService {
   }
 
   async findChatsForUser(userId: string) {
-    return this.chatRepository
-      .createQueryBuilder('chat')
-      .leftJoinAndSelect('chat.participants', 'participant')
-      .leftJoinAndSelect('chat.messages', 'message')
-      .leftJoinAndSelect('message.sender', 'sender')
-      .where('participant.id = :userId', { userId })
-      .orderBy('message.timestamp', 'ASC')
-      .getMany();
-  }
-  
+  return this.chatRepository
+    .createQueryBuilder('chat')
+    .leftJoinAndSelect('chat.participants', 'participant')
+    .leftJoinAndSelect('chat.messages', 'message')
+    .leftJoinAndSelect('message.sender', 'sender')
+    .where('participant.id = :userId', { userId })
+    .orderBy('message.timestamp', 'ASC')
+    .getMany();
+}
 }

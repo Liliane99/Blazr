@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   Card,
@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
@@ -20,8 +20,29 @@ export default function Home() {
   const [showPassword, setShowPassword] = useState(false)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const router = useRouter()
   const [error, setError] = useState("")
+  const [checkingAuth, setCheckingAuth] = useState(true)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        const res = await fetch("http://localhost:3001/auth/me", {
+          credentials: "include",
+        })
+        if (res.ok) {
+          router.replace("/inbox")
+          return
+        } else {
+          setCheckingAuth(false)
+        }
+      } catch (err) {
+        setCheckingAuth(false)
+      }
+    }
+    checkAuth()
+  }, [router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,7 +54,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", 
+        credentials: "include",
         body: JSON.stringify({ username, password }),
       })
 
@@ -48,15 +69,19 @@ export default function Home() {
     }
   }
 
+  if (checkingAuth) {
+    return <div className="text-center mt-10">Chargement...</div>
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-image p-4">
-      <div className="flex flex-col items-center">
-        <h1 className="blazr-logo">
+      <div className="flex flex-col items-center w-full max-w-md">
+        <h1 className="blazr-logo text-4xl mb-4 text-center">
           {["B", "l", "a", "z", "r"].map((letter, index) => (
             <span key={index} className="blazr-letter">{letter}</span>
           ))}
         </h1>
-        <Card className="w-[400px]">
+        <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-2xl text-center">Connexion</CardTitle>
             <CardDescription className="text-center">
@@ -77,7 +102,7 @@ export default function Home() {
                   <Label htmlFor="username" className="mb-1">Pseudo</Label>
                   <Input
                     id="username"
-                    placeholder="liliane"
+                    placeholder="Votre pseudo"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}

@@ -16,8 +16,8 @@ import { UserService } from '../users/user.service';
   cors: {
     origin: 'http://localhost:3000',
   },
-  transports: ['polling', 'websocket'],  // Ajout des transports pour assurer la compatibilité
-  namespace: '/', // optionnel mais clair
+  transports: ['polling', 'websocket'],
+  namespace: '/',
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
@@ -100,7 +100,22 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
       const message = await this.messageService.createMessageInChat(content, userId, chatId);
 
-      this.server.to(chatId).emit('newMessage', message);
+      const sender = await this.userService.findById(userId);
+
+      if (!sender) {
+        client.emit('error', "L'utilisateur expéditeur est introuvable");
+        return;
+      }
+
+      this.server.to(chatId).emit('newMessage', {
+        ...message,
+        sender: {
+          id: sender.id,
+          username: sender.username,
+          color: sender.color,
+        },
+      });
+
       console.log(`Message envoyé dans chat ${chatId} par user ${userId}`);
     } catch (error) {
       client.emit('error', "Erreur lors de l'envoi du message");

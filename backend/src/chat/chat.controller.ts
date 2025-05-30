@@ -18,10 +18,19 @@ export class ChatController {
   @UseGuards(JwtAuthGuard)
   @Post()
   create(
+    @Req() req: Request,
     @Body('name') name: string,
     @Body('participantUsernames') participantUsernames: string[],
   ) {
-    return this.chatService.create(name, participantUsernames);
+    const creatorUsername = req.user?.['username'];
+    if (!creatorUsername) {
+      throw new Error("Username non défini dans la requête");
+    }
+
+    // Ajoute le créateur dans la liste sans doublons
+    const allUsernames = Array.from(new Set([...participantUsernames, creatorUsername]));
+
+    return this.chatService.create(name, allUsernames);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -39,7 +48,7 @@ export class ChatController {
   @UseGuards(JwtAuthGuard)
   @Get('user/me')
   findChatsForCurrentUser(@Req() req: Request) {
-    const userId = req.user?.['userId'] ?? null; 
+    const userId = req.user?.['userId'];
     if (!userId) {
       throw new Error('User ID is not defined in the request');
     }

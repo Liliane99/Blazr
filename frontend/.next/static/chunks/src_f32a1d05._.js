@@ -1338,8 +1338,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/log-out.js [app-client] (ecmascript) <export default as LogOut>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/sidebar.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/avatar.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -1348,21 +1348,36 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const menuItems = [
-    {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$inbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Inbox$3e$__["Inbox"],
-        url: "/inbox",
-        title: "Inbox"
-    },
-    {
-        icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__["LogOut"],
-        url: "/logout",
-        title: "Logout"
-    }
-];
 function AppSidebar() {
     _s();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const handleLogout = async (e)=>{
+        e.preventDefault();
+        try {
+            await fetch("http://localhost:3001/auth/logout", {
+                method: "POST",
+                credentials: "include"
+            });
+            router.push("/");
+        } catch (error) {
+            console.error("Erreur lors de la déconnexion", error);
+        }
+    };
+    const menuItems = [
+        {
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$inbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Inbox$3e$__["Inbox"],
+            url: "/inbox",
+            title: "Inbox",
+            onClick: null
+        },
+        {
+            icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$log$2d$out$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__LogOut$3e$__["LogOut"],
+            url: null,
+            title: "Logout",
+            onClick: handleLogout
+        }
+    ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SidebarProvider"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Sidebar"], {
             className: "w-16 flex flex-col justify-between border-r bg-white",
@@ -1376,21 +1391,21 @@ function AppSidebar() {
                                 alt: "@shadcn"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sidebarBlazr.tsx",
-                                lineNumber: 46,
+                                lineNumber: 60,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
                                 children: "CN"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/sidebarBlazr.tsx",
-                                lineNumber: 47,
+                                lineNumber: 61,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/sidebarBlazr.tsx",
-                        lineNumber: 45,
-                        columnNumber: 9
+                        lineNumber: 59,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SidebarContent"], {
                         className: "flex flex-col items-center gap-6 mt-8",
@@ -1400,7 +1415,22 @@ function AppSidebar() {
                                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SidebarMenuItem"], {
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$sidebar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SidebarMenuButton"], {
                                         asChild: true,
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                        children: item.onClick ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: item.onClick,
+                                            title: item.title,
+                                            className: "p-2 rounded-md text-black hover:bg-gray-100",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(item.icon, {
+                                                size: 24
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/components/sidebarBlazr.tsx",
+                                                lineNumber: 77,
+                                                columnNumber: 27
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/sidebarBlazr.tsx",
+                                            lineNumber: 72,
+                                            columnNumber: 25
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             href: item.url,
                                             title: item.title,
                                             className: `p-2 rounded-md ${isActive ? "text-[oklch(38%_0.189_293.745)]" : "text-black"} hover:bg-gray-100`,
@@ -1408,55 +1438,56 @@ function AppSidebar() {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/sidebarBlazr.tsx",
-                                                lineNumber: 67,
-                                                columnNumber: 25
+                                                lineNumber: 89,
+                                                columnNumber: 27
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/sidebarBlazr.tsx",
-                                            lineNumber: 58,
-                                            columnNumber: 23
+                                            lineNumber: 80,
+                                            columnNumber: 25
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/sidebarBlazr.tsx",
-                                        lineNumber: 57,
+                                        lineNumber: 70,
                                         columnNumber: 21
                                     }, this)
                                 }, i, false, {
                                     fileName: "[project]/src/components/sidebarBlazr.tsx",
-                                    lineNumber: 56,
+                                    lineNumber: 69,
                                     columnNumber: 19
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/src/components/sidebarBlazr.tsx",
-                            lineNumber: 52,
+                            lineNumber: 65,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/sidebarBlazr.tsx",
-                        lineNumber: 51,
+                        lineNumber: 64,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/sidebarBlazr.tsx",
-                lineNumber: 44,
+                lineNumber: 58,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/components/sidebarBlazr.tsx",
-            lineNumber: 41,
+            lineNumber: 57,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/sidebarBlazr.tsx",
-        lineNumber: 40,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 }
-_s(AppSidebar, "xbyQPtUVMO7MNj7WjJlpdWqRcTo=", false, function() {
+_s(AppSidebar, "0h+B63IiVHeDT9bDhB3JTwv8ebY=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];
 });
 _c = AppSidebar;
@@ -1786,13 +1817,21 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i("[project]/node_modules/socket.io-client/build/esm/index.js [app-client] (ecmascript) <module evaluation>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/socket.io-client/build/esm/index.js [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$sidebarBlazr$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/sidebarBlazr.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/resizable.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/plus.js [app-client] (ecmascript) <export default as Plus>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.js [app-client] (ecmascript) <export default as Search>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/dialog.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/input.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/label.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/button.tsx [app-client] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/components/ui/badge'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -1805,36 +1844,53 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
+;
 const API_URL = "http://localhost:3001";
 function Inbox() {
     _s();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [messages, setMessages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [chats, setChats] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedChat, setSelectedChat] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [newMessage, setNewMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [newChatName, setNewChatName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [newChatParticipants, setNewChatParticipants] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [participantTags, setParticipantTags] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [participantInput, setParticipantInput] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [participantError, setParticipantError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [searchTerm, setSearchTerm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const socketRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const sendSoundRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const receiveSoundRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const messagesEndRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Inbox.useEffect": ()=>{
             const fetchUser = {
                 "Inbox.useEffect.fetchUser": async ()=>{
-                    const res = await fetch(`${API_URL}/users/me`, {
-                        credentials: "include"
-                    });
-                    if (res.ok) {
-                        const data = await res.json();
-                        setUser(data);
+                    try {
+                        const res = await fetch(`${API_URL}/users/me`, {
+                            credentials: "include"
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            setUser(data);
+                            setLoading(false);
+                        } else {
+                            router.push("/");
+                        }
+                    } catch  {
+                        router.push("/");
                     }
                 }
             }["Inbox.useEffect.fetchUser"];
             fetchUser();
         }
-    }["Inbox.useEffect"], []);
+    }["Inbox.useEffect"], [
+        router
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Inbox.useEffect": ()=>{
             if (!user) return;
@@ -1845,7 +1901,14 @@ function Inbox() {
                     });
                     if (res.ok) {
                         const data = await res.json();
-                        setChats(data);
+                        const sortedChats = data.sort({
+                            "Inbox.useEffect.fetchChats.sortedChats": (a, b)=>{
+                                const timeA = a.lastMessage?.timestamp ? new Date(a.lastMessage.timestamp).getTime() : 0;
+                                const timeB = b.lastMessage?.timestamp ? new Date(b.lastMessage.timestamp).getTime() : 0;
+                                return timeB - timeA;
+                            }
+                        }["Inbox.useEffect.fetchChats.sortedChats"]);
+                        setChats(sortedChats);
                     }
                 }
             }["Inbox.useEffect.fetchChats"];
@@ -1870,7 +1933,8 @@ function Inbox() {
                                     text: msg.content,
                                     sender: msg.sender?.username || "unknown",
                                     timestamp: msg.timestamp,
-                                    isRead: msg.isRead
+                                    isRead: msg.isRead,
+                                    color: msg.sender.color
                                 })
                         }["Inbox.useEffect.fetchMessages.formattedMessages"]);
                         setMessages(formattedMessages);
@@ -1893,7 +1957,7 @@ function Inbox() {
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Inbox.useEffect": ()=>{
-            if (!selectedChat || !user) return;
+            if (!user) return;
             socketRef.current = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$socket$2e$io$2d$client$2f$build$2f$esm$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"])(API_URL, {
                 transports: [
                     "polling",
@@ -1901,30 +1965,112 @@ function Inbox() {
                 ]
             });
             const socket = socketRef.current;
-            socket.emit("joinChat", {
-                chatId: selectedChat.id,
+            // Rejoindre la room globale de l'utilisateur pour recevoir tous les événements
+            socket.emit("joinUser", {
                 userId: user.id
             });
+            // Rejoindre le chat sélectionné si il y en a un
+            if (selectedChat) {
+                socket.emit("joinChat", {
+                    chatId: selectedChat.id,
+                    userId: user.id
+                });
+            }
+            // Nouveau message reçu
             socket.on("newMessage", {
                 "Inbox.useEffect": (message)=>{
                     if (message.sender.username === user.username) return;
-                    setMessages({
-                        "Inbox.useEffect": (prev)=>[
-                                ...prev,
-                                {
-                                    id: message.id.toString(),
-                                    text: message.content,
-                                    sender: message.sender.username,
-                                    timestamp: message.timestamp,
-                                    isRead: message.isRead
+                    const newMsg = {
+                        id: message.id.toString(),
+                        text: message.content,
+                        sender: message.sender.username,
+                        timestamp: message.timestamp,
+                        isRead: message.isRead,
+                        color: message.sender.color
+                    };
+                    // Ajouter le message seulement si c'est dans le chat actuel
+                    if (selectedChat && message.chatId === selectedChat.id) {
+                        setMessages({
+                            "Inbox.useEffect": (prev)=>[
+                                    ...prev,
+                                    newMsg
+                                ]
+                        }["Inbox.useEffect"]);
+                    }
+                    // Mettre à jour la liste des chats
+                    setChats({
+                        "Inbox.useEffect": (prevChats)=>{
+                            const updatedChats = prevChats.map({
+                                "Inbox.useEffect.updatedChats": (chat)=>{
+                                    if (chat.id === message.chatId) {
+                                        return {
+                                            ...chat,
+                                            lastMessage: {
+                                                content: message.content,
+                                                timestamp: message.timestamp,
+                                                sender: message.sender.username
+                                            }
+                                        };
+                                    }
+                                    return chat;
                                 }
-                            ]
+                            }["Inbox.useEffect.updatedChats"]);
+                            return updatedChats.sort({
+                                "Inbox.useEffect": (a, b)=>{
+                                    const timeA = a.lastMessage?.timestamp ? new Date(a.lastMessage.timestamp).getTime() : 0;
+                                    const timeB = b.lastMessage?.timestamp ? new Date(b.lastMessage.timestamp).getTime() : 0;
+                                    return timeB - timeA;
+                                }
+                            }["Inbox.useEffect"]);
+                        }
                     }["Inbox.useEffect"]);
                     receiveSoundRef.current?.play();
-                    fetch(`${API_URL}/messages/markAsRead/${selectedChat.id}`, {
-                        method: "PATCH",
-                        credentials: "include"
-                    });
+                    // Marquer comme lu automatiquement si c'est le chat actuel
+                    if (selectedChat && message.chatId === selectedChat.id) {
+                        fetch(`${API_URL}/messages/markAsRead/${selectedChat.id}`, {
+                            method: "PATCH",
+                            credentials: "include"
+                        });
+                    }
+                }
+            }["Inbox.useEffect"]);
+            // Messages marqués comme lus
+            socket.on("messagesRead", {
+                "Inbox.useEffect": (data)=>{
+                    if (selectedChat && data.chatId === selectedChat.id) {
+                        setMessages({
+                            "Inbox.useEffect": (prev)=>prev.map({
+                                    "Inbox.useEffect": (msg)=>msg.sender === user.username ? {
+                                            ...msg,
+                                            isRead: true
+                                        } : msg
+                                }["Inbox.useEffect"])
+                        }["Inbox.useEffect"]);
+                    }
+                }
+            }["Inbox.useEffect"]);
+            // Changement de couleur d'un utilisateur
+            socket.on("userColorChanged", {
+                "Inbox.useEffect": (data)=>{
+                    if (data.username === user.username) {
+                        setUser({
+                            "Inbox.useEffect": (prev)=>prev ? {
+                                    ...prev,
+                                    color: data.newColor
+                                } : null
+                        }["Inbox.useEffect"]);
+                    }
+                    // Mettre à jour les messages existants avec la nouvelle couleur
+                    if (selectedChat) {
+                        setMessages({
+                            "Inbox.useEffect": (prev)=>prev.map({
+                                    "Inbox.useEffect": (msg)=>msg.sender === data.username ? {
+                                            ...msg,
+                                            color: data.newColor
+                                        } : msg
+                                }["Inbox.useEffect"])
+                        }["Inbox.useEffect"]);
+                    }
                 }
             }["Inbox.useEffect"]);
             return ({
@@ -1938,28 +2084,84 @@ function Inbox() {
         selectedChat,
         user
     ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLayoutEffect"])({
+        "Inbox.useLayoutEffect": ()=>{
+            messagesEndRef.current?.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    }["Inbox.useLayoutEffect"], [
+        messages
+    ]);
     const handleSend = ()=>{
         if (newMessage.trim() === "" || !socketRef.current || !selectedChat || !user) return;
         const tempId = Date.now().toString();
+        const timestamp = new Date().toISOString();
         socketRef.current.emit("sendMessage", {
             chatId: selectedChat.id,
             userId: user.id,
             content: newMessage
         });
+        const sentMessage = {
+            id: tempId,
+            text: newMessage,
+            sender: user.username,
+            timestamp,
+            isRead: false,
+            color: user.color
+        };
         setMessages((prev)=>[
                 ...prev,
-                {
-                    id: tempId,
-                    text: newMessage,
-                    sender: user.username,
-                    timestamp: new Date().toISOString(),
-                    isRead: false
-                }
+                sentMessage
             ]);
+        setChats((prevChats)=>{
+            const updatedChats = prevChats.map((chat)=>{
+                if (chat.id === selectedChat.id) {
+                    return {
+                        ...chat,
+                        lastMessage: {
+                            content: newMessage,
+                            timestamp,
+                            sender: user.username
+                        }
+                    };
+                }
+                return chat;
+            });
+            return updatedChats.sort((a, b)=>{
+                const timeA = a.lastMessage?.timestamp ? new Date(a.lastMessage.timestamp).getTime() : 0;
+                const timeB = b.lastMessage?.timestamp ? new Date(b.lastMessage.timestamp).getTime() : 0;
+                return timeB - timeA;
+            });
+        });
         sendSoundRef.current?.play();
         setNewMessage("");
     };
+    const addParticipantTag = (username)=>{
+        const trimmedUsername = username.trim();
+        if (trimmedUsername && !participantTags.includes(trimmedUsername)) {
+            setParticipantTags([
+                ...participantTags,
+                trimmedUsername
+            ]);
+            setParticipantInput("");
+            setParticipantError("");
+        }
+    };
+    const removeParticipantTag = (username)=>{
+        setParticipantTags(participantTags.filter((tag)=>tag !== username));
+    };
+    const handleParticipantInputKeyDown = (e)=>{
+        if (e.key === "Enter" || e.key === ",") {
+            e.preventDefault();
+            addParticipantTag(participantInput);
+        } else if (e.key === "Backspace" && participantInput === "" && participantTags.length > 0) {
+            removeParticipantTag(participantTags[participantTags.length - 1]);
+        }
+    };
     const handleCreateChat = async ()=>{
+        if (!newChatName.trim()) return;
+        setParticipantError("");
         const res = await fetch(`${API_URL}/chats`, {
             method: "POST",
             headers: {
@@ -1967,23 +2169,68 @@ function Inbox() {
             },
             credentials: "include",
             body: JSON.stringify({
-                name: newChatName,
-                participantUsernames: newChatParticipants.split(",").map((u)=>u.trim())
+                name: newChatName.trim(),
+                participantUsernames: participantTags
             })
         });
-        if (!res.ok) return;
+        if (!res.ok) {
+            const errorData = await res.json().catch(()=>({}));
+            if (res.status === 404 && errorData.message?.includes("utilisateur")) {
+                setParticipantError("Un ou plusieurs participants n'existent pas");
+            } else {
+                setParticipantError("Erreur lors de la création du chat");
+            }
+            return;
+        }
         const data = await res.json();
         setChats((prev)=>[
-                ...prev,
-                data
+                data,
+                ...prev
             ]);
         setNewChatName("");
-        setNewChatParticipants("");
+        setParticipantTags([]);
+        setParticipantInput("");
+        setParticipantError("");
         setOpen(false);
     };
     const getOtherParticipants = (chat)=>chat.participants.filter((p)=>p.username !== user?.username);
+    const filteredChats = chats.filter((chat)=>{
+        const otherNames = getOtherParticipants(chat).map((p)=>p.username.toLowerCase()).join(" ");
+        return chat.name.toLowerCase().includes(searchTerm.toLowerCase()) || otherNames.includes(searchTerm.toLowerCase());
+    });
+    const formatTime = (timestamp)=>{
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diffInHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
+        if (diffInHours < 24) {
+            return date.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        } else if (diffInHours < 48) {
+            return 'Hier';
+        } else {
+            return date.toLocaleDateString([], {
+                day: '2-digit',
+                month: '2-digit'
+            });
+        }
+    };
+    const truncateMessage = (message, maxLength = 50)=>{
+        return message.length > maxLength ? message.substring(0, maxLength) + '...' : message;
+    };
+    if (loading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex items-center justify-center h-screen text-gray-500 text-lg",
+            children: "Chargement..."
+        }, void 0, false, {
+            fileName: "[project]/src/app/inbox/page.tsx",
+            lineNumber: 404,
+            columnNumber: 7
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex h-screen overflow-hidden",
+        className: "flex h-screen overflow-hidden bg-gray-100 text-gray-900",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("audio", {
                 ref: sendSoundRef,
@@ -1991,7 +2238,7 @@ function Inbox() {
                 preload: "auto"
             }, void 0, false, {
                 fileName: "[project]/src/app/inbox/page.tsx",
-                lineNumber: 217,
+                lineNumber: 412,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("audio", {
@@ -2000,96 +2247,44 @@ function Inbox() {
                 preload: "auto"
             }, void 0, false, {
                 fileName: "[project]/src/app/inbox/page.tsx",
-                lineNumber: 218,
+                lineNumber: 413,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "w-16 shrink-0",
+                className: "w-16 shrink-0 bg-white border-r",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$sidebarBlazr$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AppSidebar"], {}, void 0, false, {
                     fileName: "[project]/src/app/inbox/page.tsx",
-                    lineNumber: 221,
+                    lineNumber: 416,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/inbox/page.tsx",
-                lineNumber: 220,
+                lineNumber: 415,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResizablePanelGroup"], {
                 direction: "horizontal",
-                className: "flex-1 h-full",
+                className: "flex-1 flex h-full",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResizablePanel"], {
                         defaultSize: 30,
                         minSize: 20,
+                        className: "flex flex-col bg-white border-r shadow-sm",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "h-full border-r bg-gray-50 p-4 overflow-y-auto",
+                            className: "p-5 flex flex-col h-full",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex justify-between items-center mb-4",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                            className: "text-xl font-bold tracking-wide",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-lg font-semibold",
-                                                    children: [
-                                                        "Conversations de ",
-                                                        user?.username
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 229,
-                                                    columnNumber: 17
-                                                }, this),
-                                                user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "mt-2",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                            htmlFor: "color",
-                                                            className: "text-sm text-gray-600",
-                                                            children: "Couleur de vos messages :"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 232,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                            type: "color",
-                                                            id: "color",
-                                                            value: user.color,
-                                                            onChange: async (e)=>{
-                                                                const newColor = e.target.value;
-                                                                const res = await fetch(`${API_URL}/users/me`, {
-                                                                    method: "PATCH",
-                                                                    headers: {
-                                                                        "Content-Type": "application/json"
-                                                                    },
-                                                                    credentials: "include",
-                                                                    body: JSON.stringify({
-                                                                        color: newColor
-                                                                    })
-                                                                });
-                                                                if (res.ok) {
-                                                                    const updatedUser = await res.json();
-                                                                    setUser(updatedUser);
-                                                                }
-                                                            },
-                                                            className: "ml-2 h-6 w-10 p-0 border-0 bg-transparent"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 235,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 231,
-                                                    columnNumber: 19
-                                                }, this)
+                                                "Conversations de ",
+                                                user?.username
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 228,
+                                            lineNumber: 423,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -2100,342 +2295,590 @@ function Inbox() {
                                                     asChild: true,
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                         size: "icon",
-                                                        variant: "ghost",
+                                                        variant: "outline",
+                                                        className: "hover:bg-indigo-100",
+                                                        "aria-label": "Nouvelle conversation",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Plus$3e$__["Plus"], {
                                                             className: "w-5 h-5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 262,
+                                                            lineNumber: 432,
                                                             columnNumber: 21
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/inbox/page.tsx",
-                                                        lineNumber: 261,
+                                                        lineNumber: 426,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 260,
+                                                    lineNumber: 425,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                                                    className: "max-w-md",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
                                                                 children: "Nouvelle conversation"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                                lineNumber: 267,
+                                                                lineNumber: 437,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 266,
+                                                            lineNumber: 436,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "space-y-4",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "space-y-2",
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                            htmlFor: "chatName",
                                                                             children: "Nom de la conversation"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 271,
+                                                                            lineNumber: 441,
                                                                             columnNumber: 23
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "chatName",
                                                                             value: newChatName,
-                                                                            onChange: (e)=>setNewChatName(e.target.value)
+                                                                            onChange: (e)=>setNewChatName(e.target.value),
+                                                                            placeholder: "Ex: Projet équipe"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 272,
+                                                                            lineNumber: 442,
                                                                             columnNumber: 23
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 270,
+                                                                    lineNumber: 440,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "space-y-2",
                                                                     children: [
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                            children: "Participants (usernames séparés par virgules)"
+                                                                            htmlFor: "participants",
+                                                                            children: "Participants"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 278,
+                                                                            lineNumber: 450,
                                                                             columnNumber: 23
                                                                         }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                                            value: newChatParticipants,
-                                                                            onChange: (e)=>setNewChatParticipants(e.target.value)
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "flex flex-wrap gap-2 p-2 border rounded-md min-h-[2.5rem] focus-within:ring-2 focus-within:ring-indigo-500",
+                                                                            children: [
+                                                                                participantTags.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Badge, {
+                                                                                        variant: "secondary",
+                                                                                        className: "flex items-center gap-1",
+                                                                                        children: [
+                                                                                            tag,
+                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                                                                className: "w-3 h-3 cursor-pointer hover:text-red-500",
+                                                                                                onClick: ()=>removeParticipantTag(tag)
+                                                                                            }, void 0, false, {
+                                                                                                fileName: "[project]/src/app/inbox/page.tsx",
+                                                                                                lineNumber: 455,
+                                                                                                columnNumber: 29
+                                                                                            }, this)
+                                                                                        ]
+                                                                                    }, tag, true, {
+                                                                                        fileName: "[project]/src/app/inbox/page.tsx",
+                                                                                        lineNumber: 453,
+                                                                                        columnNumber: 27
+                                                                                    }, this)),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                                    id: "participants",
+                                                                                    value: participantInput,
+                                                                                    onChange: (e)=>setParticipantInput(e.target.value),
+                                                                                    onKeyDown: handleParticipantInputKeyDown,
+                                                                                    onBlur: ()=>{
+                                                                                        if (participantInput.trim()) {
+                                                                                            addParticipantTag(participantInput);
+                                                                                        }
+                                                                                    },
+                                                                                    placeholder: participantTags.length === 0 ? "Tapez un nom d'utilisateur..." : "",
+                                                                                    className: "border-0 shadow-none p-0 h-auto focus-visible:ring-0 flex-1 min-w-[120px]"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                                                    lineNumber: 461,
+                                                                                    columnNumber: 25
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                                            lineNumber: 451,
+                                                                            columnNumber: 23
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-xs text-gray-500",
+                                                                            children: "Appuyez sur Entrée ou virgule pour ajouter un participant"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                                            lineNumber: 279,
+                                                                            lineNumber: 475,
                                                                             columnNumber: 23
+                                                                        }, this),
+                                                                        participantError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                            className: "text-sm text-red-500",
+                                                                            children: participantError
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                                            lineNumber: 479,
+                                                                            columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                                    lineNumber: 277,
+                                                                    lineNumber: 449,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 269,
+                                                            lineNumber: 439,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                                 onClick: handleCreateChat,
+                                                                className: "w-full",
                                                                 children: "Créer"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                                lineNumber: 286,
+                                                                lineNumber: 484,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                                            lineNumber: 285,
+                                                            lineNumber: 483,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 265,
+                                                    lineNumber: 435,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 259,
+                                            lineNumber: 424,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 227,
+                                    lineNumber: 422,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mb-4 relative",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "search",
+                                            placeholder: "Rechercher...",
+                                            value: searchTerm,
+                                            onChange: (e)=>setSearchTerm(e.target.value),
+                                            className: "w-full pl-10 pr-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+                                            "aria-label": "Recherche de conversations"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 493,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
+                                            className: "absolute top-2.5 left-3 text-gray-400",
+                                            size: 18
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 501,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                    lineNumber: 492,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: "space-y-2",
-                                    children: Array.isArray(chats) && chats.map((chat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            onClick: ()=>{
-                                                setSelectedChat(chat);
-                                                setMessages([]);
-                                            },
-                                            className: "p-3 rounded-md bg-white hover:bg-gray-100 cursor-pointer shadow-sm",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "font-medium",
-                                                    children: getOtherParticipants(chat).map((p)=>p.username).join(", ")
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 303,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "text-sm text-gray-500",
-                                                    children: chat.name
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 308,
-                                                    columnNumber: 21
-                                                }, this)
-                                            ]
-                                        }, chat.id, true, {
+                                    className: "flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-indigo-300 scrollbar-track-gray-100",
+                                    children: [
+                                        filteredChats.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                            className: "text-gray-400 text-center mt-10",
+                                            children: "Aucune conversation trouvée"
+                                        }, void 0, false, {
                                             fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 295,
-                                            columnNumber: 19
-                                        }, this))
-                                }, void 0, false, {
+                                            lineNumber: 506,
+                                            columnNumber: 17
+                                        }, this),
+                                        filteredChats.map((chat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                                                onClick: ()=>{
+                                                    setSelectedChat(chat);
+                                                    setMessages([]);
+                                                },
+                                                className: `cursor-pointer p-3 rounded-lg shadow-sm transition-colors
+                    ${selectedChat?.id === chat.id ? "bg-indigo-100 font-semibold" : "bg-white hover:bg-indigo-50"}`,
+                                                role: "button",
+                                                tabIndex: 0,
+                                                onKeyDown: (e)=>{
+                                                    if (e.key === "Enter") {
+                                                        setSelectedChat(chat);
+                                                        setMessages([]);
+                                                    }
+                                                },
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex justify-between items-start",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex-1 min-w-0",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-indigo-700 font-medium truncate",
+                                                                    children: getOtherParticipants(chat).map((p)=>p.username).join(", ") || chat.name
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                                    lineNumber: 532,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-sm text-gray-500 truncate mt-0.5",
+                                                                    children: chat.name
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                                    lineNumber: 535,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                chat.lastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-xs text-gray-400 truncate mt-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                            className: "font-medium",
+                                                                            children: [
+                                                                                chat.lastMessage.sender === user?.username ? "Vous" : chat.lastMessage.sender,
+                                                                                ":"
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                                            lineNumber: 538,
+                                                                            columnNumber: 27
+                                                                        }, this),
+                                                                        " ",
+                                                                        truncateMessage(chat.lastMessage.content, 30)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                                    lineNumber: 537,
+                                                                    columnNumber: 25
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                            lineNumber: 531,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        chat.lastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "text-xs text-gray-400 ml-2 flex-shrink-0",
+                                                            children: formatTime(chat.lastMessage.timestamp)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                            lineNumber: 546,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                    lineNumber: 530,
+                                                    columnNumber: 19
+                                                }, this)
+                                            }, chat.id, false, {
+                                                fileName: "[project]/src/app/inbox/page.tsx",
+                                                lineNumber: 509,
+                                                columnNumber: 17
+                                            }, this))
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/app/inbox/page.tsx",
-                                    lineNumber: 292,
+                                    lineNumber: 504,
                                     columnNumber: 13
+                                }, this),
+                                user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mt-4 flex items-center gap-2 text-sm text-gray-600",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "color",
+                                            className: "whitespace-nowrap",
+                                            children: "Couleur des messages :"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 557,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                            type: "color",
+                                            id: "color",
+                                            value: user.color,
+                                            onChange: async (e)=>{
+                                                const newColor = e.target.value;
+                                                const res = await fetch(`${API_URL}/users/me`, {
+                                                    method: "PATCH",
+                                                    headers: {
+                                                        "Content-Type": "application/json"
+                                                    },
+                                                    credentials: "include",
+                                                    body: JSON.stringify({
+                                                        color: newColor
+                                                    })
+                                                });
+                                                if (res.ok) {
+                                                    const updatedUser = await res.json();
+                                                    setUser(updatedUser);
+                                                    // Émettre le changement de couleur via socket
+                                                    if (socketRef.current) {
+                                                        socketRef.current.emit("userColorChanged", {
+                                                            userId: user.id,
+                                                            newColor: newColor,
+                                                            username: user.username
+                                                        });
+                                                    }
+                                                }
+                                            },
+                                            className: "w-10 h-8 border-0 p-0 bg-transparent cursor-pointer",
+                                            "aria-label": "Choisir la couleur des messages"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 558,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                    lineNumber: 556,
+                                    columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/inbox/page.tsx",
-                            lineNumber: 226,
+                            lineNumber: 421,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/inbox/page.tsx",
-                        lineNumber: 225,
+                        lineNumber: 420,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResizableHandle"], {}, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResizableHandle"], {
+                        className: "bg-gray-200 hover:bg-indigo-300 cursor-col-resize"
+                    }, void 0, false, {
                         fileName: "[project]/src/app/inbox/page.tsx",
-                        lineNumber: 315,
+                        lineNumber: 594,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$resizable$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ResizablePanel"], {
                         defaultSize: 70,
                         minSize: 40,
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "h-full bg-white p-6 flex flex-col",
-                            children: selectedChat ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "border-b pb-4 mb-4 flex justify-between items-center",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                                    className: "text-lg font-semibold",
-                                                    children: selectedChat.name
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 323,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "text-sm text-gray-500",
-                                                    children: [
-                                                        "Avec :",
-                                                        " ",
-                                                        selectedChat.participants.map((p)=>p.username).join(", ")
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/src/app/inbox/page.tsx",
-                                                    lineNumber: 324,
-                                                    columnNumber: 21
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/src/app/inbox/page.tsx",
-                                            lineNumber: 322,
-                                            columnNumber: 19
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/inbox/page.tsx",
-                                        lineNumber: 321,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex-1 overflow-y-auto space-y-4 flex flex-col",
-                                        children: messages.map((msg)=>{
-                                            const isMe = msg.sender === user?.username;
-                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `max-w-xs p-3 rounded-md text-sm ${isMe ? "self-end text-right" : "self-start bg-gray-100"}`,
-                                                style: isMe ? {
-                                                    backgroundColor: user?.color || "#000000"
-                                                } : {},
-                                                children: [
-                                                    !isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-xs text-gray-500 mb-1",
-                                                        children: msg.sender
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/inbox/page.tsx",
-                                                        lineNumber: 343,
-                                                        columnNumber: 27
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: msg.text
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/inbox/page.tsx",
-                                                        lineNumber: 347,
-                                                        columnNumber: 25
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "text-xs text-gray-500 mt-1",
-                                                        children: [
-                                                            new Date(msg.timestamp).toLocaleTimeString([], {
-                                                                hour: "2-digit",
-                                                                minute: "2-digit"
-                                                            }),
-                                                            " ",
-                                                            isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                className: "ml-2",
-                                                                children: msg.isRead ? "Lu" : "Distribué"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/inbox/page.tsx",
-                                                                lineNumber: 354,
-                                                                columnNumber: 29
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/src/app/inbox/page.tsx",
-                                                        lineNumber: 348,
-                                                        columnNumber: 25
-                                                    }, this)
-                                                ]
-                                            }, msg.id, true, {
-                                                fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 335,
-                                                columnNumber: 23
-                                            }, this);
-                                        })
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/inbox/page.tsx",
-                                        lineNumber: 331,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "mt-4 flex gap-2",
+                        className: "flex flex-col bg-white",
+                        children: selectedChat ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("header", {
+                                    className: "border-b p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "text",
-                                                placeholder: "Écrire un message...",
-                                                value: newMessage,
-                                                onChange: (e)=>setNewMessage(e.target.value),
-                                                className: "flex-grow border rounded-md p-2",
-                                                onKeyDown: (e)=>{
-                                                    if (e.key === "Enter") handleSend();
-                                                }
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                className: "text-2xl font-bold",
+                                                children: selectedChat.name
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 365,
+                                                lineNumber: 601,
                                                 columnNumber: 19
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                onClick: handleSend,
-                                                children: "Envoyer"
-                                            }, void 0, false, {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-sm text-gray-500",
+                                                children: [
+                                                    "Avec :",
+                                                    " ",
+                                                    selectedChat.participants.filter((p)=>p.username !== user?.username).map((p)=>p.username).join(", ")
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/src/app/inbox/page.tsx",
-                                                lineNumber: 375,
+                                                lineNumber: 602,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/inbox/page.tsx",
-                                        lineNumber: 364,
+                                        lineNumber: 600,
                                         columnNumber: 17
                                     }, this)
-                                ]
-                            }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                children: "Sélectionnez une conversation pour discuter"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/inbox/page.tsx",
-                                lineNumber: 379,
-                                columnNumber: 15
-                            }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                    lineNumber: 599,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+                                    className: "flex-1 overflow-y-auto px-6 py-4 space-y-3 scrollbar-thin scrollbar-thumb-indigo-300 scrollbar-track-gray-100",
+                                    "aria-live": "polite",
+                                    "aria-relevant": "additions",
+                                    children: [
+                                        messages.map((msg)=>{
+                                            const isMe = msg.sender === user?.username;
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: `flex ${isMe ? "justify-end" : "justify-start"}`,
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: `max-w-sm px-3 py-2 rounded-2xl text-sm break-words
+                          ${isMe ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-900"}`,
+                                                    style: {
+                                                        backgroundColor: isMe ? user?.color : msg.color || "#e5e7eb",
+                                                        color: isMe ? "white" : "black"
+                                                    },
+                                                    role: "article",
+                                                    "aria-label": `${msg.sender} à ${new Date(msg.timestamp).toLocaleTimeString([], {
+                                                        hour: '2-digit',
+                                                        minute: '2-digit'
+                                                    })}`,
+                                                    children: [
+                                                        !isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "mb-1 font-semibold text-xs opacity-80",
+                                                            children: msg.sender
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                            lineNumber: 634,
+                                                            columnNumber: 35
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            children: msg.text
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                            lineNumber: 635,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "mt-1 text-xs opacity-70 flex justify-between",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("time", {
+                                                                    dateTime: msg.timestamp,
+                                                                    children: new Date(msg.timestamp).toLocaleTimeString([], {
+                                                                        hour: "2-digit",
+                                                                        minute: "2-digit"
+                                                                    })
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                                    lineNumber: 637,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                isMe && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "ml-2 italic",
+                                                                    children: msg.isRead ? "Lu" : "Distribué"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                                    lineNumber: 644,
+                                                                    columnNumber: 29
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                                            lineNumber: 636,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                                    lineNumber: 624,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, msg.id, false, {
+                                                fileName: "[project]/src/app/inbox/page.tsx",
+                                                lineNumber: 620,
+                                                columnNumber: 21
+                                            }, this);
+                                        }),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            ref: messagesEndRef
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 653,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                    lineNumber: 612,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
+                                    className: "p-5 border-t flex items-center gap-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                            rows: 1,
+                                            placeholder: "Écrire un message...",
+                                            value: newMessage,
+                                            onChange: (e)=>setNewMessage(e.target.value),
+                                            onKeyDown: (e)=>{
+                                                if (e.key === "Enter" && !e.shiftKey) {
+                                                    e.preventDefault();
+                                                    handleSend();
+                                                }
+                                            },
+                                            className: "flex-grow resize-none rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500",
+                                            "aria-label": "Écrire un message"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 657,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                            onClick: handleSend,
+                                            className: "whitespace-nowrap",
+                                            children: "Envoyer"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/inbox/page.tsx",
+                                            lineNumber: 671,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/app/inbox/page.tsx",
+                                    lineNumber: 656,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "flex items-center justify-center h-full text-gray-400 italic text-lg",
+                            children: "Sélectionnez une conversation pour discuter"
                         }, void 0, false, {
                             fileName: "[project]/src/app/inbox/page.tsx",
-                            lineNumber: 318,
-                            columnNumber: 11
+                            lineNumber: 677,
+                            columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/inbox/page.tsx",
-                        lineNumber: 317,
+                        lineNumber: 596,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/inbox/page.tsx",
-                lineNumber: 224,
+                lineNumber: 419,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/inbox/page.tsx",
-        lineNumber: 215,
+        lineNumber: 411,
         columnNumber: 5
     }, this);
 }
-_s(Inbox, "Hn4kYoDPpfMP9/9coVSZyoYDHsU=");
+_s(Inbox, "OK9JrVQVhT2XEw72zO5xaWH/73E=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+    ];
+});
 _c = Inbox;
 var _c;
 __turbopack_context__.k.register(_c, "Inbox");

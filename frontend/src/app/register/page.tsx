@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   Card,
@@ -11,23 +11,45 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function Register() {
   const [showPassword] = useState(false)
-  const [successMessage, setSuccessMessage] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+  const [checkingAuth, setCheckingAuth] = useState(true)
+
+  const router = useRouter()
+
+  useEffect(() => {
+    async function checkAuth() {
+      try {
+        const res = await fetch("http://localhost:3001/auth/me", {
+          credentials: "include",
+        })
+        if (res.ok) {
+          router.push("/inbox")
+        } else {
+          setCheckingAuth(false)
+        }
+      } catch {
+        setCheckingAuth(false)
+      }
+    }
+    checkAuth()
+  }, [router])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSuccessMessage('')
-    setErrorMessage('')
+    setSuccessMessage("")
+    setErrorMessage("")
 
     const form = e.currentTarget
-    const pseudo = (form.querySelector('#pseudo') as HTMLInputElement).value
-    const password = (form.querySelector('#password') as HTMLInputElement).value
-    const confirm = (form.querySelector('#password-confirmation') as HTMLInputElement).value
+    const pseudo = (form.querySelector("#pseudo") as HTMLInputElement).value
+    const password = (form.querySelector("#password") as HTMLInputElement).value
+    const confirm = (form.querySelector("#password-confirmation") as HTMLInputElement).value
 
     if (password !== confirm) {
       setErrorMessage("Les mots de passe ne correspondent pas.")
@@ -35,10 +57,10 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch('http://localhost:3001/auth/register', {
-        method: 'POST',
+      const res = await fetch("http://localhost:3001/auth/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username: pseudo, password }),
       })
@@ -55,15 +77,19 @@ export default function Register() {
     }
   }
 
+  if (checkingAuth) {
+    return <div className="text-center mt-10">Chargement...</div>
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-image p-4">
-      <div className="flex flex-col items-center">
-        <h1 className="blazr-logo">
+      <div className="flex flex-col items-center w-full max-w-md">
+        <h1 className="blazr-logo text-4xl mb-4 text-center">
           {["B", "l", "a", "z", "r"].map((letter, index) => (
             <span key={index} className="blazr-letter">{letter}</span>
           ))}
         </h1>
-        <Card className="w-[480px]">
+        <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-2xl text-center">Inscription</CardTitle>
             <CardDescription className="text-center">
@@ -82,7 +108,7 @@ export default function Register() {
               <div className="grid gap-4">
                 <div>
                   <Label htmlFor="pseudo" className="mb-1">Pseudo</Label>
-                  <Input id="pseudo" placeholder="Liam02" type="text" required />
+                  <Input id="pseudo" placeholder="Votre pseudo" type="text" required />
                 </div>
                 <div>
                   <Label htmlFor="password" className="mb-1">Mot de passe</Label>
@@ -94,7 +120,9 @@ export default function Register() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="password-confirmation" className="mb-1">Confirmation du mot de passe</Label>
+                  <Label htmlFor="password-confirmation" className="mb-1">
+                    Confirmation du mot de passe
+                  </Label>
                   <Input
                     id="password-confirmation"
                     placeholder="Confirmer votre mot de passe"

@@ -1,6 +1,9 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Controller, Post, Body, Res, Get, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Request } from 'express';
+import * as jwt from 'jsonwebtoken';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -27,4 +30,16 @@ export class AuthController {
     
     return { message: 'Connexion réussie' };
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  me(@Req() req: Request) {
+    return { user: req.user };
+  }
+
+  @Post('logout')
+  logout(@Res({ passthrough: true }) res: Response) {
+  res.clearCookie('jwt'); 
+  return { message: 'Logged out' };
+}
 }
