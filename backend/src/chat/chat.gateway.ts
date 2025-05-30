@@ -109,6 +109,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
       this.server.to(chatId).emit('newMessage', {
         ...message,
+        chatId,
         sender: {
           id: sender.id,
           username: sender.username,

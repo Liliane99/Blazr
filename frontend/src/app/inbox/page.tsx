@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect, useCallback } from "react";
 import io from "socket.io-client";
 import { useRouter } from "next/navigation";
 import { AppSidebar } from "@/components/sidebarBlazr";
@@ -9,7 +9,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { Plus, Search, X } from "lucide-react";
+import { Plus, Search, X, Palette } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -72,11 +72,50 @@ export default function Inbox() {
   const [participantError, setParticipantError] = useState("");
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoadingMessages, setIsLoadingMessages] = useState(false);
 
   const socketRef = useRef<ReturnType<typeof io> | null>(null);
   const sendSoundRef = useRef<HTMLAudioElement | null>(null);
   const receiveSoundRef = useRef<HTMLAudioElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  // Fonction pour récupérer les messages d'un chat
+  const fetchMessages = useCallback(async (chatId: string) => {
+    setIsLoadingMessages(true);
+    try {
+      const res = await fetch(`${API_URL}/messages/chat/${chatId}`, {
+        credentials: "include",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const formattedMessages = data.map((msg: any) => ({
+          id: msg.id.toString(),
+          text: msg.content,
+          sender: msg.sender?.username || "unknown",
+          timestamp: msg.timestamp,
+          isRead: msg.isRead,
+          color: msg.sender.color,
+        }));
+        setMessages(formattedMessages);
+      }
+    } catch (error) {
+      console.error("Erreur lors du chargement des messages:", error);
+    } finally {
+      setIsLoadingMessages(false);
+    }
+  }, []);
+
+  // Fonction pour marquer les messages comme lus
+  const markMessagesAsRead = useCallback(async (chatId: string) => {
+    try {
+      await fetch(`${API_URL}/messages/markAsRead/${chatId}`, {
+        method: "PATCH",
+        credentials: "include",
+      });
+    } catch (error) {
+      console.error("Erreur lors du marquage comme lu:", error);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -117,38 +156,13 @@ export default function Inbox() {
     fetchChats();
   }, [user]);
 
+  // Charger les messages quand un chat est sélectionné
   useEffect(() => {
     if (!selectedChat) return;
 
-    const fetchMessages = async () => {
-      const res = await fetch(`${API_URL}/messages/chat/${selectedChat.id}`, {
-        credentials: "include",
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const formattedMessages = data.map((msg: any) => ({
-          id: msg.id.toString(),
-          text: msg.content,
-          sender: msg.sender?.username || "unknown",
-          timestamp: msg.timestamp,
-          isRead: msg.isRead,
-          color: msg.sender.color,
-        }));
-        setMessages(formattedMessages);
-      }
-    };
-
-    fetchMessages();
-
-    const markAsRead = async () => {
-      await fetch(`${API_URL}/messages/markAsRead/${selectedChat.id}`, {
-        method: "PATCH",
-        credentials: "include",
-      });
-    };
-
-    markAsRead();
-  }, [selectedChat]);
+    fetchMessages(selectedChat.id);
+    markMessagesAsRead(selectedChat.id);
+  }, [selectedChat, fetchMessages, markMessagesAsRead]);
 
   useEffect(() => {
     if (!user) return;
@@ -215,10 +229,7 @@ export default function Inbox() {
 
       // Marquer comme lu automatiquement si c'est le chat actuel
       if (selectedChat && message.chatId === selectedChat.id) {
-        fetch(`${API_URL}/messages/markAsRead/${selectedChat.id}`, {
-          method: "PATCH",
-          credentials: "include",
-        });
+        markMessagesAsRead(selectedChat.id);
       }
     });
 
@@ -242,22 +253,20 @@ export default function Inbox() {
       }
       
       // Mettre à jour les messages existants avec la nouvelle couleur
-      if (selectedChat) {
-        setMessages((prev) => 
-          prev.map(msg => 
-            msg.sender === data.username 
-              ? { ...msg, color: data.newColor }
-              : msg
-          )
-        );
-      }
+      setMessages((prev) => 
+        prev.map(msg => 
+          msg.sender === data.username 
+            ? { ...msg, color: data.newColor }
+            : msg
+        )
+      );
     });
 
     return () => {
       socket.disconnect();
       socketRef.current = null;
     };
-  }, [selectedChat, user]);
+  }, [selectedChat, user, markMessagesAsRead]);
 
   useLayoutEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -368,6 +377,37 @@ export default function Inbox() {
     setOpen(false);
   };
 
+  const handleColorChange = async (newColor: string) => {
+    if (!user) return;
+    
+    try {
+      const res = await fetch(`${API_URL}/users/me`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ color: newColor }),
+      });
+      
+      if (res.ok) {
+        const updatedUser = await res.json();
+        setUser(updatedUser);
+        
+        // Émettre le changement de couleur via socket
+        if (socketRef.current) {
+          socketRef.current.emit("userColorChanged", {
+            userId: user.id,
+            newColor: newColor,
+            username: user.username
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors du changement de couleur:", error);
+    }
+  };
+
   const getOtherParticipants = (chat: Chat) =>
     chat.participants.filter((p) => p.username !== user?.username);
 
@@ -397,6 +437,26 @@ export default function Inbox() {
 
   const truncateMessage = (message: string, maxLength: number = 50) => {
     return message.length > maxLength ? message.substring(0, maxLength) + '...' : message;
+  };
+
+  // Fonction pour déterminer si le texte doit être blanc ou noir selon la couleur de fond
+  const getContrastColor = (bgColor: string) => {
+    // Convertir la couleur hex en RGB
+    const hex = bgColor.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    // Calculer la luminance
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    
+    // Retourner blanc pour les couleurs sombres, noir pour les couleurs claires
+    return luminance > 0.5 ? '#000000' : '#ffffff';
+  };
+
+  const handleChatSelect = (chat: Chat) => {
+    setSelectedChat(chat);
+    setMessages([]); // Vider les messages temporairement pour éviter la confusion
   };
 
   if (loading) {
@@ -508,10 +568,7 @@ export default function Inbox() {
               {filteredChats.map((chat) => (
                 <li
                   key={chat.id}
-                  onClick={() => {
-                    setSelectedChat(chat);
-                    setMessages([]);
-                  }}
+                  onClick={() => handleChatSelect(chat)}
                   className={`cursor-pointer p-3 rounded-lg shadow-sm transition-colors
                     ${
                       selectedChat?.id === chat.id
@@ -522,8 +579,7 @@ export default function Inbox() {
                   tabIndex={0}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      setSelectedChat(chat);
-                      setMessages([]);
+                      handleChatSelect(chat);
                     }
                   }}
                 >
@@ -553,39 +609,30 @@ export default function Inbox() {
             </ul>
 
             {user && (
-              <div className="mt-4 flex items-center gap-2 text-sm text-gray-600">
-                <Label htmlFor="color" className="whitespace-nowrap">Couleur des messages :</Label>
-                <input
-                  type="color"
-                  id="color"
-                  value={user.color}
-                  onChange={async (e) => {
-                    const newColor = e.target.value;
-                    const res = await fetch(`${API_URL}/users/me`, {
-                      method: "PATCH",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      credentials: "include",
-                      body: JSON.stringify({ color: newColor }),
-                    });
-                    if (res.ok) {
-                      const updatedUser = await res.json();
-                      setUser(updatedUser);
-                      
-                      // Émettre le changement de couleur via socket
-                      if (socketRef.current) {
-                        socketRef.current.emit("userColorChanged", {
-                          userId: user.id,
-                          newColor: newColor,
-                          username: user.username
-                        });
-                      }
-                    }
-                  }}
-                  className="w-10 h-8 border-0 p-0 bg-transparent cursor-pointer"
-                  aria-label="Choisir la couleur des messages"
-                />
+              <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Palette className="w-4 h-4 text-gray-600" />
+                  <Label htmlFor="color" className="text-sm font-medium">Ma couleur :</Label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      id="color"
+                      value={user.color}
+                      onChange={(e) => handleColorChange(e.target.value)}
+                      className="w-8 h-8 border-2 border-white rounded-full shadow-md cursor-pointer"
+                      aria-label="Choisir la couleur des messages"
+                    />
+                    <div 
+                      className="px-3 py-1 rounded-full text-xs font-medium shadow-sm"
+                      style={{ 
+                        backgroundColor: user.color,
+                        color: getContrastColor(user.color)
+                      }}
+                    >
+                      Aperçu
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -614,26 +661,39 @@ export default function Inbox() {
                 aria-live="polite"
                 aria-relevant="additions"
               >
+                {isLoadingMessages && (
+                  <div className="flex justify-center items-center py-4">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-indigo-600"></div>
+                    <span className="ml-2 text-gray-500">Chargement des messages...</span>
+                  </div>
+                )}
+                
                 {messages.map((msg) => {
                   const isMe = msg.sender === user?.username;
+                  const bgColor = isMe ? user?.color : msg.color || "#e5e7eb";
+                  const textColor = getContrastColor(bgColor);
+                  
                   return (
                     <div
                       key={msg.id}
                       className={`flex ${isMe ? "justify-end" : "justify-start"}`}
                     >
                       <div
-                        className={`max-w-sm px-3 py-2 rounded-2xl text-sm break-words
-                          ${isMe ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-900"}`}
+                        className="max-w-sm px-4 py-3 rounded-2xl text-sm break-words shadow-sm"
                         style={{
-                          backgroundColor: isMe ? user?.color : msg.color || "#e5e7eb",
-                          color: isMe ? "white" : "black",
+                          backgroundColor: bgColor,
+                          color: textColor,
                         }}
                         role="article"
                         aria-label={`${msg.sender} à ${new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
                       >
-                        {!isMe && <div className="mb-1 font-semibold text-xs opacity-80">{msg.sender}</div>}
-                        <div>{msg.text}</div>
-                        <div className="mt-1 text-xs opacity-70 flex justify-between">
+                        {!isMe && (
+                          <div className="mb-2 font-semibold text-xs opacity-90 border-b border-current border-opacity-20 pb-1">
+                            {msg.sender}
+                          </div>
+                        )}
+                        <div className="leading-relaxed">{msg.text}</div>
+                        <div className="mt-2 text-xs opacity-75 flex justify-between items-center">
                           <time dateTime={msg.timestamp}>
                             {new Date(msg.timestamp).toLocaleTimeString([], {
                               hour: "2-digit",
@@ -641,8 +701,8 @@ export default function Inbox() {
                             })}
                           </time>
                           {isMe && (
-                            <span className="ml-2 italic">
-                              {msg.isRead ? "Lu" : "Distribué"}
+                            <span className="ml-2 italic text-xs">
+                              {msg.isRead ? "✓✓" : "✓"}
                             </span>
                           )}
                         </div>
